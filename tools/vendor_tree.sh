@@ -12,12 +12,6 @@ PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." >/dev/null && pwd )"
 # Text format
 source $PROJECT_DIR/helpers/common_script.sh
 
-# Exit if missing token, user or email
-if [ -z "$GIT_TOKEN" ] && [ -z "$GITHUB_EMAIL" ] && [ -z "$GITHUB_USER" ]; then
-    echo -e "Missing GitHub token or user or email. Exiting."
-    exit 1
-fi
-
 # Exit if no arguements
 if [ -z "$1" ] ; then
     echo -e "Supply ROM source as arguement!"
@@ -41,18 +35,4 @@ for var in "$@"; do
     # Extract vendor blobs
     bash "$PROJECT_DIR/helpers/extract_blobs/extract-files.sh" "$var"
 
-    # Push to GitHub
-    cd "$PROJECT_DIR"/vendor/"$BRAND"/"$DEVICE"
-    if [ ! -d .git ]; then
-        echo -e "Initializing git."
-        git init . > /dev/null 2>&1
-        echo -e "Adding origin: git@github.com:$GITHUB_USER/"$VT_REPO".git "
-        git remote add origin git@github.com:$GITHUB_USER/"$VT_REPO".git > /dev/null 2>&1
-    fi
-    COMMIT_MSG=$(echo "$DEVICE: $FINGERPRINT" | sort -u | head -n 1 )
-    git checkout -b $BRANCH > /dev/null 2>&1
-    git add --all > /dev/null 2>&1
-    echo -e "Commiting $COMMIT_MSG"
-    git -c "user.name=$GITHUB_USER" -c "user.email=$GITHUB_EMAIL" commit -sm "$COMMIT_MSG" -q
-    git push https://"$GIT_TOKEN"@github.com/$GITHUB_USER/"$VT_REPO".git $BRANCH > /dev/null 2>&1
 done
