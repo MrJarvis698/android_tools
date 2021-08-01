@@ -16,8 +16,8 @@ fi
 
 # Install some packages
 if [[ -e "/usr/bin/apt-get" ]]; then
-    apt-get install -y aria2 arj brotli cabextract cmake device-tree-compiler gcc g++ git liblz4-tool liblzma-dev libtinyxml2-dev lz4 mpack openjdk-11-jdk p7zip-full p7zip-rar python3 python3-pip rar sharutils unace unrar unzip uudeview xz-utils zip zlib1g-dev
+    curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && apt-get install -y aria2 arj brotli cabextract cmake device-tree-compiler gcc g++ git liblz4-tool liblzma-dev libtinyxml2-dev lz4 mpack openjdk-11-jdk p7zip-full p7zip-rar python3 python3-pip rar sharutils unace unrar unzip uudeview xz-utils zip zlib1g-dev git-lfs
 elif [[ -e "/usr/bin/pacman" ]]; then
-    pacman -Syu --noconfirm android-tools aria2 arj brotli cabextract cmake dtc gcc git lz4 xz tinyxml2 p7zip python2-pip python-pip unrar sharutils unace zip unzip uudeview zip
+    curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && pacman -Syu --noconfirm android-tools aria2 arj brotli cabextract cmake dtc gcc git lz4 xz tinyxml2 p7zip python2-pip python-pip unrar sharutils unace zip unzip uudeview zip git-lfs
 fi
 pip3 install backports.lzma docopt protobuf pycrypto zstandard

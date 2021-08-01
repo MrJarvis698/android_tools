@@ -8,3 +8,4 @@ tools/android_boot_image_editor/
 tools/extract-dtb/
 tools/Firmware_extractor/
 .fuse_*
+vendor*/

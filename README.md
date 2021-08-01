@@ -56,8 +56,7 @@ Output: `system.prop` & `vendor_prop.mk` files.
 Usage: `./tools/vendor_prop.sh <path to ROM dump>`  
 Output: `vendor_prop.mk` file.  
 
-15. **vendor_tree.sh**: A script to prepare vendor tree from a ROM dump after generating proprietary-files.txt and push it to GitHub.  
-To extract from a specific proprietary-files.txt, place it before in `working/proprietary-files.txt`.  
+15. **vendor_tree.sh**: A script to prepare vendor tree from a ROM dump after generating proprietary-files.txt.  
+This Script also Creates specific blobs commit History so can be easy to identify blobs. You have to push repo manually using, Warning- It Uses GIT-LFS for apk dumps.  
 Usage:  
-`export GIT_TOKEN=<KEY>`  
-`./tools/vendor_tree.sh <path to ROM dump>`  
+`./vendor_extract.sh <path to ROM dump>`  
